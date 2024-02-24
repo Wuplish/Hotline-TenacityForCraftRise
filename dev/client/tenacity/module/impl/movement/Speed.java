@@ -20,7 +20,7 @@ import dev.utils.time.TimerUtil;
 import mapper.ThePlayer;
 import dev.client.tenacity.module.impl.movement.timer1;
 public class Speed extends Module {
-    private final ModeSetting mode = new ModeSetting("Mode", "Watchdog", "Watchdog", "Matrix", "AAC3.6.4");
+    private final ModeSetting mode = new ModeSetting("Mode", "Watchdog", "Watchdog", "Matrix");
     private final ModeSetting watchdogMode = new ModeSetting("Watchdog Mode", "Hop", "Hop", "Low Hop", "Ground");
     private final BooleanSetting fastfall = new BooleanSetting("Fast Fall", false);
     private final NumberSetting timer = new NumberSetting("Timer", 1, 5, 1, 0.1);
@@ -47,19 +47,7 @@ public class Speed extends Module {
 
     private final EventListener<MotionEvent> onMotion = e -> {
         switch (mode.getMode()) {
-        	case "AAC3.6.4":
-                if(timer1.hasTimeElapsed(1000 / 50, true)) {
-                        if (ThePlayer.isMoving()) {
-                            ThePlayer.Strafe(0.5f);
-                            if(ThePlayer.onGround()){
-                                ThePlayer.jump();
-                                double motionx = ThePlayer.GetMotionX();
-                                double motionz = ThePlayer.GetMotionZ();
-                                ThePlayer.SetMotionZ(motionz * 1.5f);
-                                ThePlayer.SetMotionX(motionx * 1.5f);
-                            }
-                        }
-                    }
+        	//arisunem çok güzel kodlarımızı inceliyor <3
             case "Watchdog":
                 switch (watchdogMode.getMode()) {
                     case "Hop":
